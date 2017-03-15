@@ -1,0 +1,47 @@
+{
+  "name": "@rabblerouser/group-mail-receiver",
+  "version": "0.0.1",
+  "description": "A lambda function that receives mail intended for group from SES and puts corresponding events onto the kinesis stream",
+  "main": "index.js",
+  "scripts": {
+    "start": "node localDev.js",
+    "test": "NODE_ENV=test mocha -r src/__tests__/testGlobals.js --recursive src/__tests__"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rabblerouser/group-mailer.git"
+  },
+  "keywords": [
+    "stream",
+    "aws",
+    "nodejs"
+  ],
+  "author": {
+    "name": "The Rabble Rouser Team",
+    "email": "rabblerouserproject@gmail.com",
+    "url": "https://rabblerouser.team"
+  },
+  "contributors": [
+    {
+      "name": "Andrew Jones",
+      "url": "https://github.com/akjones"
+    }
+  ],
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rabblerouser/group-mailer/issues"
+  },
+  "homepage": "https://github.com/rabblerouser/group-mailer#readme",
+  "dependencies": {
+    "request": "^2.79.0",
+    "request-promise": "^4.1.1"
+  },
+  "devDependencies": {
+    "@rabblerouser/local-kinesis-lambda-runner": "^0.2.0",
+    "aws-sdk": "^2.9.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7",
+    "sinon-chai": "^2.8.0"
+  }
+}

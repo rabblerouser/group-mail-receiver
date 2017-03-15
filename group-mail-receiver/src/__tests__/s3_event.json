@@ -1,0 +1,38 @@
+{
+    "Records": [
+        {
+            "eventVersion": "2.0",
+            "eventSource": "aws:s3",
+            "awsRegion": "us-west-2",
+            "eventTime": "2017-03-15T05:21:48.565Z",
+            "eventName": "ObjectCreated:Put",
+            "userIdentity": {
+                "principalId": "AWS:AIDAJF4DQJXXZUH7QKSIS"
+            },
+            "requestParameters": {
+                "sourceIPAddress": "10.233.119.214"
+            },
+            "responseElements": {
+                "x-amz-request-id": "9B88C0A0809E835A",
+                "x-amz-id-2": "kxZjFGTzAKLvek56ZgA6AEM5K28lesORV+HvKr1Bct3mqDOsp7exbmf1+ZsQr9sd"
+            },
+            "s3": {
+                "s3SchemaVersion": "1.0",
+                "configurationId": "tf-s3-lambda-0015a3665a6653e8f2148b489a",
+                "bucket": {
+                    "name": "rr-group-mailer-test",
+                    "ownerIdentity": {
+                        "principalId": "A1VK5INUUVBB2L"
+                    },
+                    "arn": "arn:aws:s3:::rr-group-mailer-test"
+                },
+                "object": {
+                    "key": "tfao6vga0t84vmcvmni5ebjgu08nea49kjp62no1",
+                    "size": 5868,
+                    "eTag": "ad9eaa52f3a61006c83a88a1a7801576",
+                    "sequencer": "0058C8CF6C87B8B621"
+                }
+            }
+        }
+    ]
+}
