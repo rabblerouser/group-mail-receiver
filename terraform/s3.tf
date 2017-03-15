@@ -2,6 +2,15 @@ resource "aws_s3_bucket" "email" {
   bucket = "${var.group_mail_s3_bucket_name}"
   acl    = "private"
 
+  lifecycle_rule = {
+    prefix = "*"
+    enabled = true
+
+    expiration = {
+      days = 1
+    }
+  }
+
   policy = <<EOF
 {
     "Version": "2008-10-17",
