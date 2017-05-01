@@ -1,0 +1,26 @@
+{
+  "name": "@rabblerouser/group-mailer",
+  "version": "0.0.1",
+  "description": "Enables campaigners to send email to a Rabble Rouser group.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rabblerouser/group-mailer.git"
+  },
+  "keywords": [
+    "email",
+    "rabblerouser"
+  ],
+  "author": "Rabble Rouser team",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rabblerouser/group-mailer/issues"
+  },
+  "homepage": "https://github.com/rabblerouser/group-mailer#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
+}
