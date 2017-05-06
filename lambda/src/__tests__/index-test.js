@@ -31,7 +31,7 @@ describe('handler', () => {
     });
 
     it('gets the email body from the s3 bucket', () => {
-        s3.getObject.yields(null, 's3Data');
+        s3.getObject.yields(null, {'Body': 's3Data'});
 
         return handler(s3, request, 'http://mail', 'secretTeapot')(event, null, callback).then(() => {
             expect(request).to.have.been.calledWith({

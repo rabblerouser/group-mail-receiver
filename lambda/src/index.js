@@ -18,7 +18,7 @@ module.exports = (s3, request, uri, secret) => (event, context, callback) => {
             const params = {
                 method: 'POST',
                 uri: uri,
-                body: data,
+                body: data.Body,
                 json: true,
                 headers: { Authorization: secret }
             };
