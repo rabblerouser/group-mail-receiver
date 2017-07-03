@@ -8,6 +8,7 @@ node_js:
 
 before_install:
   - pip install --upgrade --user awscli
+  -  cd lambda
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then bin/lambda-deploy.sh; fi
