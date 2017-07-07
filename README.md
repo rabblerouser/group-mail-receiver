@@ -16,7 +16,7 @@ Enables super admins to send email to groups in a Rabble Rouser instance.
 
 #### Initial
 
-To create all the AWS resources, run `deploy.sh`, which uses terraform. This repo is a little different from most of the others, because it contains its own terraform code, rather than having it in the `infra` repo. It's just a little something we're trying out.
+To create/modify the AWS resources involved with this lambda, run `deploy.sh`, which uses terraform. This repo is a little different from most of the others, because it contains its own terraform code, rather than having it in the `infra` repo. It's just a little something we're trying out.
 
 #### Updating the lambda code
 
