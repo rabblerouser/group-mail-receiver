@@ -22,10 +22,9 @@ variable "group_mail_s3_bucket_name" {
 
 variable "rabble_rouser_artefact_bucket" {
   description = "The name of the bucket that Rabble Rouser"
-  default = "rabblerouser-artefacts"
+  default = "rabblerouser-ses-artefacts"
 }
 variable "rabble_rouser_artefact_lambda_directory" {
   description = "The directory in the Rabble Rouser artefact bucket to put lambdas"
   default = "lambdas"
 }
-
