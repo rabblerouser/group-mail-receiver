@@ -17,3 +17,9 @@ Enables super admins to send email to groups in a Rabble Rouser instance.
 * Build
 
         ./deploy.sh
+
+## Deployment
+
+The CI pipeline will package the code into a .zip file and upload it to S3, but getting the lambda to pick up the changes is a different matter. Right now, the way to do that is with a manual command. We're looking at automating it.
+
+    aws lambda update-function-code --function-name=group-mail-receiver --s3-bucket=[S3 BUCKET NAME] --s3-key=[FILE PATH WITHIN S3 BUCKET]
