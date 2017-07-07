@@ -12,13 +12,13 @@ Enables super admins to send email to groups in a Rabble Rouser instance.
 
         aws ses verify-domain-identity --domain <domain.com>
 
-## Make it go
-
-* Build
-
-        ./deploy.sh
-
 ## Deployment
+
+#### Initial
+
+To create all the AWS resources, run `deploy.sh`, which uses terraform. This repo is a little different from most of the others, because it contains its own terraform code, rather than having it in the `infra` repo. It's just a little something we're trying out.
+
+#### Updating the lambda code
 
 The CI pipeline will package the code into a .zip file and upload it to S3, but getting the lambda to pick up the changes is a different matter. Right now, the way to do that is with a manual command. We're looking at automating it.
 
