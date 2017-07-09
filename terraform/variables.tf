@@ -28,3 +28,7 @@ variable "rabble_rouser_artefact_lambda_directory" {
   description = "The directory in the Rabble Rouser artefact bucket to put lambdas"
   default = "lambdas"
 }
+variable "tf_state_backend_bucket" {
+  description = "The name of the bucket where we store the terraform state file for this repository"
+  default = "tf-state--group-mail-receiver"
+}
