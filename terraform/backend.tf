@@ -2,6 +2,10 @@ resource "aws_s3_bucket" "tf_state_backend" {
   bucket        = "${var.tf_state_backend_bucket}"
   acl           = "private"
   region        = "${var.aws_region}"
+
+  versioning {
+    enabled = true
+  }
 }
 
 terraform {
