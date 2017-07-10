@@ -45,7 +45,7 @@ describe('handler', () => {
         });
     });
 
-    xit('barfs if there are errors getting the email from s3', () => {
+    it('barfs if there are errors getting the email from s3', () => {
         s3.getObject.yields('barf', null);
 
         return handler(s3, request, 'http://mail', 'secretTeapot')(event, null, callback).then(() => {
@@ -53,13 +53,13 @@ describe('handler', () => {
         });
     });
 
-    xit('barfs if the requests are not successful', () => {
+    it('barfs if the requests are not successful', () => {
         s3.getObject.yields(null, 's3Data');
         request.returns(Promise.reject('Uh-oh!'));
 
         return handler(s3, request, 'http://mail', 'secretTeapot')(event, null, callback).then(() => {
             expect(callback).to.have.been.calledWith('Uh-oh!');
-        }).then(done);
+        });
     });
 
 });

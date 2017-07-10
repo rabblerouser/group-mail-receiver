@@ -1,5 +1,28 @@
 'use strict';
 
+const getEmailFromS3 = (s3, emailRecord) => {
+    return new Promise((resolve, reject) => {
+        s3.getObject(emailRecord, (err, data) => {
+            if(err) {
+                reject(err);
+            } else {
+                console.log("EMAIL CONTENTS:", data);
+                resolve(data);
+            }
+        }); 
+    });
+}
+
+const createPost = (emailRecord, uri, secret) => {
+  return {
+      method: 'POST',
+      uri,
+      body: emailRecord.Body,
+      json: true,
+      headers: { Authorization: secret }
+  };
+}
+
 module.exports = (s3, request, uri, secret) => (event, context, callback) => {
     const emailEvents = event.Records.map(record => {
         return {
@@ -8,24 +31,10 @@ module.exports = (s3, request, uri, secret) => (event, context, callback) => {
         };
     });
 
-    const requestAttempts = emailEvents.map(emailRecord => {
-        s3.getObject(emailRecord, (err, data) => {
-            if(err) {
-                return Promise.reject(err);
-            }
-
-            console.log("EMAIL CONTENTS:", data);
-            const params = {
-                method: 'POST',
-                uri: uri,
-                body: data.Body,
-                json: true,
-                headers: { Authorization: secret }
-            };
-
-            return request(params);
-        });
-    });
+    const requestAttempts = emailEvents.map(emailRecord => 
+        getEmailFromS3(s3, emailRecord)
+        .then(emailRecord => createPost(emailRecord, uri, secret))
+        .then(postData => request(postData)))
 
     return Promise.all(requestAttempts)
         .then(() => {
