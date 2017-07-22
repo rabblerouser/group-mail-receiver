@@ -11,23 +11,20 @@ describe('group-mail-receiver lambda function', () => {
 
     it('returns the bucket name, key, and all records for the event', () => {
       const bucketName = "name of the bucket";
-      const object_key = "key_of_the_file";
-      const s3_info = {
-          "bucket": {"name": bucketName},
-          "object": { "key": object_key }
-      };
-      const records = [{ "s3": s3_info }]
-      const event = {"Records": records};
+      const objectKey1 = "key of the first file";
+      const objectKey2 = "key of the second file";
+      const s3Info1 = { "bucket": { "name": bucketName }, "object": { "key": objectKey1 } };
+      const s3Info2 = { "bucket": { "name": bucketName }, "object": { "key": objectKey2 } };
+      const event = { "Records": [{ "s3": s3Info1 }, { "s3": s3Info2 }] };
 
-      let expected_info = {
-        bucket: bucketName,
-        key: object_key,
-        records: records,
-      };
+      const expectedEmailReferences = [
+        { bucket: bucketName, key: objectKey1 },
+        { bucket: bucketName, key: objectKey2 },
+      ];
 
       handler(event, null, callback);
 
-      expect(callback).to.have.been.calledWith(null, expected_info);
+      expect(callback).to.have.been.calledWith(null, expectedEmailReferences);
     });
   });
 });
