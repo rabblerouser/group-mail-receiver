@@ -2,64 +2,32 @@
 
 const handler = require('../index.js');
 
-describe('handler', () => {
-    let s3;
-    let request;
+describe('group-mail-receiver lambda function', () => {
+  describe('when a valid s3 event triggers the lambda', () => {
     let callback;
-
-    const event = {
-        "Records": [
-            {
-                "s3": {
-                    "bucket": {"name": "bucket"},
-                    "object": {
-                        "key": "key",
-                        "size": 42
-                    }
-                }
-            }
-        ]
-    };
-
     beforeEach(() => {
-        s3 = {
-            getObject: sinon.stub()
-        };
-
-        request = sinon.stub().returns(Promise.resolve());
         callback = sinon.spy();
     });
 
-    it('gets the email body from the s3 bucket', () => {
-        s3.getObject.yields(null, {'Body': 's3Data'});
+    it('returns the bucket name, key, and all records for the event', () => {
+      const bucketName = "name of the bucket";
+      const object_key = "key_of_the_file";
+      const s3_info = {
+          "bucket": {"name": bucketName},
+          "object": { "key": object_key }
+      };
+      const records = [{ "s3": s3_info }]
+      const event = {"Records": records};
 
-        return handler(s3, request, 'http://mail', 'secretTeapot')(event, null, callback).then(() => {
-            expect(request).to.have.been.calledWith({
-                method: 'POST',
-                uri: 'http://mail',
-                body: 's3Data',
-                json: true,
-                headers: { Authorization: 'secretTeapot' }
-            });
-            expect(callback).to.have.been.calledWith(null, 'ok');
-        });
+      let expected_info = {
+        bucket: bucketName,
+        key: object_key,
+        records: records,
+      };
+
+      handler(event, null, callback);
+
+      expect(callback).to.have.been.calledWith(null, expected_info);
     });
-
-    it('barfs if there are errors getting the email from s3', () => {
-        s3.getObject.yields('barf', null);
-
-        return handler(s3, request, 'http://mail', 'secretTeapot')(event, null, callback).then(() => {
-            expect(callback).to.have.been.calledWith('barf');
-        });
-    });
-
-    it('barfs if the requests are not successful', () => {
-        s3.getObject.yields(null, 's3Data');
-        request.returns(Promise.reject('Uh-oh!'));
-
-        return handler(s3, request, 'http://mail', 'secretTeapot')(event, null, callback).then(() => {
-            expect(callback).to.have.been.calledWith('Uh-oh!');
-        });
-    });
-
+  });
 });

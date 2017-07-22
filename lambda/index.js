@@ -1,8 +1,7 @@
 'use strict';
 
-const request = require('request-promise');
 const handler = require('./src');
+const aws = require('aws-sdk');
+const s3 = new aws.S3({ apiVersion: '2006-03-01' });
 
-// const endpoint = process.env.LISTENER_ENDPOINT;
-// const authToken = process.env.LISTENER_AUTH_TOKEN;
-exports.handler = handler(request);
+exports.handler = handler;
