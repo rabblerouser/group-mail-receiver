@@ -18,7 +18,7 @@ resource "aws_lambda_function" "group_mail_receiver" {
 
   environment = {
     variables = {
-      LISTENER_ENDPOINT = "blah"
+      LISTENER_ENDPOINT = "${var.forward_to}"
     }
   }
 }

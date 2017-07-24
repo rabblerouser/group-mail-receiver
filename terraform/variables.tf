@@ -32,3 +32,8 @@ variable "tf_state_backend_bucket" {
   description = "The name of the bucket where we store the terraform state file for this repository"
   default = "tf-state--group-mail-receiver"
 }
+
+variable "forward_to" {
+  description = "The endpoint for group-mailer where email references should be forwarded to, e.g. https://group-mailer.something.com/mail"
+  type = "string"
+}
