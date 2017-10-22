@@ -29,7 +29,7 @@ resource "aws_s3_bucket" "email" {
             "Resource": "arn:aws:s3:::${var.group_mail_s3_bucket_name}/*",
             "Condition": {
                 "StringEquals": {
-                    "aws:Referer": "${var.aws_account_id}"
+                    "aws:Referer": "${data.aws_caller_identity.current.account_id}"
                 }
             }
         }

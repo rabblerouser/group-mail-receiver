@@ -4,3 +4,4 @@ npm-debug.log
 *.tfstate.backup
 terraform.tfvars
 group-mail-receiver.zip
+.terraform
