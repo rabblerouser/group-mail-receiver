@@ -1,11 +1,17 @@
-'use strict';
+module.exports = (request, groupMailerEndpoint) => (event, context, callback) => {
+  console.log('EVENT', event)
+  const postMail = (promise, record) => ( promise.then(() => (
+    request({
+      method: 'POST',
+      uri: groupMailerEndpoint,
+      body: { s3ObjectKey: record.s3.object.key },
+      json: true,
+    })
+  )));
 
-module.exports = (event, context, callback) => {
-  const emailReferences = event.Records.map(record => {
-    return {
-      bucket: record.s3.bucket.name,
-      key: record.s3.object.key,
-    };
-  });
-  callback(null, emailReferences);
+  event.Records.reduce(postMail, Promise.resolve())
+    .then(
+      () => callback(null, 'ok'),
+      err => callback(err)
+    );
 };
