@@ -10,6 +10,7 @@ data "aws_s3_bucket_object" "group_mailer_zip" {
 resource "aws_lambda_function" "group_mail_receiver" {
   s3_bucket     = "${data.aws_s3_bucket_object.group_mailer_zip.bucket}"
   s3_key        = "${data.aws_s3_bucket_object.group_mailer_zip.key}"
+  s3_object_version = "${data.aws_s3_bucket_object.group_mailer_zip.version_id}"
   function_name = "${var.group_mail_receiver_lambda_name}"
   handler       = "index.handler"
   timeout       = 10
