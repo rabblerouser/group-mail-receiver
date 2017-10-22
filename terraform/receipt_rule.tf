@@ -9,7 +9,7 @@ resource "aws_ses_active_receipt_rule_set" "main" {
 resource "aws_ses_receipt_rule" "store" {
   name          = "process_group_mail"
   rule_set_name = "group_mail_rules"
-  recipients    = ["groups@${var.mail_domain_name}"]
+  recipients    = ["${var.mail_domain_name}"]
   enabled       = true
   tls_policy    = "Require"
   scan_enabled  = true
