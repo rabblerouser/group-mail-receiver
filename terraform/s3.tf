@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "email" {
-  bucket = "${var.group_mail_s3_bucket_name}"
+  bucket = "${var.domain}-mail-storage"
   acl    = "private"
 
   lifecycle_rule = {
@@ -26,7 +26,7 @@ resource "aws_s3_bucket" "email" {
             "Action": [
                 "s3:PutObject"
             ],
-            "Resource": "arn:aws:s3:::${var.group_mail_s3_bucket_name}/*",
+            "Resource": "arn:aws:s3:::${var.domain}-mail-storage/*",
             "Condition": {
                 "StringEquals": {
                     "aws:Referer": "${data.aws_caller_identity.current.account_id}"

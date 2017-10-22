@@ -1,6 +1,6 @@
 resource "aws_route53_record" "ses_verification" {
   zone_id = "${var.route53_zone_id}"
-  name = "_amazonses.${var.mail_domain_name}"
+  name = "_amazonses.${var.domain}"
   type = "TXT"
   ttl = "300"
   records = [
@@ -10,7 +10,7 @@ resource "aws_route53_record" "ses_verification" {
 
 resource "aws_route53_record" "mail" {
   zone_id = "${var.route53_zone_id}"
-  name = "${var.mail_domain_name}"
+  name = "${var.domain}"
   type = "MX"
   ttl = "300"
   records = [

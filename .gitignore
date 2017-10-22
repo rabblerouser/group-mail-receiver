@@ -2,6 +2,5 @@ node_modules
 npm-debug.log
 *.tfstate
 *.tfstate.backup
-terraform.tfvars
 group-mail-receiver.zip
 .terraform

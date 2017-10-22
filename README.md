@@ -8,7 +8,7 @@ Enables super admins to send email to groups in a Rabble Rouser instance.
 
         aws route53 list-hosted-zones
 
-* Verify domain:
+* Get an SES verification token:
 
         aws ses verify-domain-identity --domain <domain.com>
 

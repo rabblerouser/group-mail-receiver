@@ -19,7 +19,7 @@ resource "aws_lambda_function" "group_mail_receiver" {
 
   environment = {
     variables = {
-      FORWARD_TO_ENDPOINT = "${var.forward_to}"
+      FORWARD_TO_ENDPOINT = "https://group-mailer.${var.domain}/mail"
     }
   }
 }
