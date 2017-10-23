@@ -1,1 +1,0 @@
-# group-mail-reciver

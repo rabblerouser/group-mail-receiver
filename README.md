@@ -1,19 +1,21 @@
-# group-mailer
+# group-mail-receiver
 
 Enables super admins to send email to groups in a Rabble Rouser instance.
 
-## Setup
+This is a lambda function, which is configured to be run whenever an email is sent by a Rabble Rouser admin to a special
+email address. It forwards the request on to the group-mailer, which eventually results in the original email being
+forwarded to the relevant members.
 
-* Get zone id (from a list of hosted zones):
+## Local development
 
-        aws route53 list-hosted-zones
-
-* Get an SES verification token:
-
-        aws ses verify-domain-identity --domain <domain.com>
+From the `lambda` subdirectory you can do `yarn simulate some-s3-object` to invoke the lambda locally with a mock
+payload. It will try to send a POST request to the group-mailer, which it assumes is running at `localhost:3002`. For
+instructions on running the group-mailer and associated services, see the README for the
+[group-mailer](https://github.com/rabblerouser/group-mailer), or the new [Cage project](https://github.com/camjackson/rabblerouser).
 
 ## Deployment
 
-#### Initial
-
-To create/modify the AWS resources involved with this lambda, run `deploy.sh`, which uses terraform. This repo is a little different from most of the others, because it contains its own terraform code, rather than having it in the `infra` repo. It's just a little something we're trying out.
+This application contains its own terraform code for deploying itself, which is a new pattern we're trying. However,
+the terraform code here should not be run directly. Instead, it should be used as a module, which is invoked from the
+main [infra repo](https://github.com/rabblerouser/infra). See that repo for instructions on how to deploy an entire
+Rabble Rouser stack

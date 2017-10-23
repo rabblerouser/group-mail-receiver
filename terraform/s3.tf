@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "email" {
+resource "aws_s3_bucket" "email_bucket" {
   bucket = "${var.domain}-mail-storage"
   acl    = "private"
 
@@ -10,7 +10,10 @@ resource "aws_s3_bucket" "email" {
       days = 1
     }
   }
+}
 
+resource "aws_s3_bucket_policy" "ses_put_to_email_bucket" {
+  bucket = "${aws_s3_bucket.email_bucket.id}"
   policy = <<EOF
 {
     "Version": "2008-10-17",
@@ -26,7 +29,7 @@ resource "aws_s3_bucket" "email" {
             "Action": [
                 "s3:PutObject"
             ],
-            "Resource": "arn:aws:s3:::${var.domain}-mail-storage/*",
+            "Resource": "${aws_s3_bucket.email_bucket.arn}/*",
             "Condition": {
                 "StringEquals": {
                     "aws:Referer": "${data.aws_caller_identity.current.account_id}"
@@ -39,7 +42,7 @@ EOF
 }
 
 resource "aws_s3_bucket_notification" "bucket_notification" {
-  bucket = "${aws_s3_bucket.email.id}"
+  bucket = "${aws_s3_bucket.email_bucket.id}"
 
   lambda_function {
     lambda_function_arn = "${aws_lambda_function.group_mail_receiver.arn}"
@@ -52,5 +55,5 @@ resource "aws_lambda_permission" "allow_bucket" {
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.group_mail_receiver.arn}"
   principal     = "s3.amazonaws.com"
-  source_arn    = "${aws_s3_bucket.email.arn}"
+  source_arn    = "${aws_s3_bucket.email_bucket.arn}"
 }

@@ -1,5 +1,6 @@
 provider "aws" {
-  region = "${var.aws_region}"
+  alias = "ses_region"
+  region = "${var.ses_region}"
 }
 
 # This allows us to look up the AWS account id dynamically

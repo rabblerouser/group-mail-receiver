@@ -4,7 +4,7 @@ resource "aws_route53_record" "ses_verification" {
   type = "TXT"
   ttl = "300"
   records = [
-    "${var.ses_verification_token}"
+    "${aws_ses_domain_identity.ses_domain_entity.verification_token}"
   ]
 }
 
@@ -14,6 +14,6 @@ resource "aws_route53_record" "mail" {
   type = "MX"
   ttl = "300"
   records = [
-    "10 inbound-smtp.${var.aws_region}.amazonaws.com"
+    "10 inbound-smtp.${var.ses_region}.amazonaws.com"
   ]
 }
