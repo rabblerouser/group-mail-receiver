@@ -1,7 +1,7 @@
 const request = require('request-promise-native');
 const lambda = require('./src');
 const groupMailerEndpoint = 'http://localhost:3002/mail';
-const authToken = process.env.AUTH_TOKEN;
+const authToken = process.env.AUTH_TOKEN || 'secret';
 
 const lambdaCallback = (err, result) => (
   err ? console.error('Lambda failed:', err.message) : console.log('Lambda succeeded:', result)
