@@ -21,6 +21,7 @@ resource "aws_lambda_function" "group_mail_receiver" {
   environment = {
     variables = {
       FORWARD_TO_ENDPOINT = "https://group-mailer.${var.domain}/mail"
+      AUTH_TOKEN = "${random_id.group_mail_receiver_auth_token.hex}"
     }
   }
 }
