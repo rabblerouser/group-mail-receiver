@@ -2,12 +2,6 @@
 # yarn lockfile v1
 
 
-"@rabblerouser/local-kinesis-lambda-runner@^0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@rabblerouser/local-kinesis-lambda-runner/-/local-kinesis-lambda-runner-0.2.3.tgz#1e67782059879989c1a09f921c384c16ace091b2"
-  dependencies:
-    aws-sdk "^2.22.0"
-
 ajv@^5.1.0:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.2.3.tgz#c06f598778c44c6b161abafe3466b81ad1814ed2"
@@ -33,7 +27,7 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-aws-sdk@^2.22.0, aws-sdk@^2.9.0:
+aws-sdk@^2.9.0:
   version "2.48.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.48.0.tgz#c89bbdbd71fdd33457cd65c46c4080e4e44b2702"
   dependencies:

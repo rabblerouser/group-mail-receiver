@@ -11,33 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/rabblerouser/group-mail-receiver.git"
   },
-  "keywords": [
-    "stream",
-    "aws",
-    "nodejs"
-  ],
-  "author": {
-    "name": "The Rabble Rouser Team",
-    "email": "rabblerouserproject@gmail.com",
-    "url": "https://rabblerouser.team"
-  },
-  "contributors": [
-    {
-      "name": "Andrew Jones",
-      "url": "https://github.com/akjones"
-    }
-  ],
   "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/rabblerouser/group-mail-receiver/issues"
-  },
-  "homepage": "https://github.com/rabblerouser/group-mail-receiver#readme",
   "dependencies": {
     "request": "^2.83.0",
     "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
-    "@rabblerouser/local-kinesis-lambda-runner": "^0.2.3",
     "aws-sdk": "^2.9.0",
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
