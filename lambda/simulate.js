@@ -1,6 +1,6 @@
 const request = require('request-promise-native');
 const lambda = require('./src');
-const groupMailerEndpoint = 'http://localhost:3002/mail';
+const groupMailerEndpoint = process.env.FORWARD_TO_ENDPOINT || 'http://localhost:3002/mail';
 const authToken = process.env.AUTH_TOKEN || 'secret';
 
 const lambdaCallback = (err, result) => (
