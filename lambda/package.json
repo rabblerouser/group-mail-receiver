@@ -4,7 +4,7 @@
   "description": "A lambda function that receives mail intended for group from SES and puts corresponding events onto the kinesis stream",
   "main": "index.js",
   "scripts": {
-    "simulate": "node localDev.js",
+    "simulate": "node simulate.js",
     "test": "NODE_ENV=test mocha -r src/__tests__/testGlobals.js --recursive src/__tests__"
   },
   "repository": {

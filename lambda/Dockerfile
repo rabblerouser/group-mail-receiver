@@ -4,6 +4,6 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY . /app
 
-RUN npm install
+RUN yarn
 
-CMD npm start
+ENTRYPOINT ["yarn", "simulate"]

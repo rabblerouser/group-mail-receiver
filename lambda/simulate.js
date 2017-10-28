@@ -8,6 +8,12 @@ const lambdaCallback = (err, result) => (
 );
 
 const key = process.argv[2];
+
+if (!key) {
+  console.error('Please provide the S3 object key as a command-line argument');
+  process.exit(1);
+}
+
 const record = { s3: { object: { key } } };
 
 lambda(request, groupMailerEndpoint, authToken)({ Records: [record] }, null, lambdaCallback);
