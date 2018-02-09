@@ -11,5 +11,5 @@ before_install:
   - cd lambda
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then bin/lambda-deploy.sh; fi
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then bin/docker-build-and-deploy.sh; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then bin/lambda-deploy.sh; fi
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then bin/docker-build-and-deploy.sh; fi
