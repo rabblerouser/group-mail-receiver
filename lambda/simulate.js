@@ -16,4 +16,4 @@ if (!key) {
 
 const record = { s3: { object: { key } } };
 
-lambda(request, groupMailerEndpoint, authToken)({ Records: [record] }, null, lambdaCallback);
+lambda(request, groupMailerEndpoint, authToken, console)({ Records: [record] }, null, lambdaCallback);
