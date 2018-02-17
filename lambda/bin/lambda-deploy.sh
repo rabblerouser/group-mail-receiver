@@ -5,7 +5,7 @@ set -ex
 PACKAGE_NAME=group-mail-receiver
 
 echo 'REMOVING DEV DEPENDENCIES'
-npm prune --production
+yarn --production
 
 echo 'PACKAGING THE CODE'
 zip --quiet -r $PACKAGE_NAME.zip index.js src node_modules/ -x __tests__

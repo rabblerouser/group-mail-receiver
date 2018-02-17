@@ -22,7 +22,7 @@ module.exports = (request, groupMailerEndpoint, authToken, console) => (event, c
     })
   );
 
-  event.Records.reduce(postMail, Promise.resolve())
+  return event.Records.reduce(postMail, Promise.resolve())
     .then(
       () => callback(null, 'ok'),
       err => callback(err)

@@ -2,14 +2,13 @@
   "name": "@rabblerouser/group-mail-receiver",
   "version": "0.0.1",
   "description": "A lambda function that receives mail intended for group from SES and puts corresponding events onto the kinesis stream",
-  "main": "index.js",
   "scripts": {
     "simulate": "node simulate.js",
     "test": "NODE_ENV=test mocha -r src/__tests__/testGlobals.js --recursive src/__tests__"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rabblerouser/group-mail-receiver.git"
+    "url": "https://github.com/rabblerouser/group-mail-receiver.git"
   },
   "license": "AGPL-3.0",
   "dependencies": {
@@ -19,7 +18,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "sinon": "^2.0.0",
-    "sinon-chai": "^2.8.0"
+    "sinon": "^4.3.0",
+    "sinon-chai": "^2.14.0"
   }
 }
