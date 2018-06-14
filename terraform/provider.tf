@@ -1,5 +1,5 @@
 provider "aws" {
-  version = "~> 1.1.0"
+  version = "~> 1.23.0"
   alias = "ses_region"
   region = "${var.ses_region}"
 }
